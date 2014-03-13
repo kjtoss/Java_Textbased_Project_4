@@ -73,6 +73,15 @@ public class Nav{
       getCommand();
       navigate();
       updateDisplay();
+      if(currentLocale==9||currentLocale==8){
+      System.out.println("[" + moves + " moves, score " + score + "] ");
+      float ratio = 0;
+      if(moves!=0)
+        ratio = score/moves;
+      System.out.println("Achievement Ratio: " + (ratio));
+      String posMoves = "Possible Moves:";
+        stillPlaying=false;
+      }
     }
         
     System.out.println("Thank you for playing.");
@@ -135,7 +144,28 @@ public class Nav{
           mapOut=true;
       } else if ( command.equalsIgnoreCase("m")||command.equalsIgnoreCase("map") ) {
         if(mapOut==true){
-        System.out.println("This is a map:");
+        System.out.println("This is a map.  Some paths may only be one way, so be careful!");
+System.out.println("                                 W");
+System.out.println("                                   |");
+System.out.println("                                   |");
+System.out.println("                       S<----*---->N");
+System.out.println("                                   |");
+System.out.println("                                   |");
+System.out.println("                                  E\n");
+System.out.println("                              ( (9)--Heaven )");
+System.out.println("                                  | |");
+System.out.println("                            --[ (3)--River  ]--");            
+System.out.println("                                  | |");
+System.out.println("                               [ (10)--Shop  ]");
+System.out.println("        (to river)           | |           (to river)");
+System.out.println("  [ (1)--Leo         ]--[ (0)--Champ   ]--[ (2)--SC      ]");
+System.out.println("                 | |              | |              | |");
+System.out.println("  [ (5)--McCann ]--[ (4)--Tenney  ]--[ (6)--Donnelly]");
+System.out.println("                 | |              | |              | |");
+System.out.println("                              [ (7)--Highway ]");
+System.out.println("                                  | |");
+System.out.println("                              < (8)--HELL    >");
+  
         }else{
         System.out.println("You do not own a map.");
         }
