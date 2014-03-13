@@ -7,4 +7,4 @@ and using 'h' or 'help' will display possible commands.
 
 In order to add items to inventory, you may find the items at the shop.  Currency will be
 implemented in versions to come.  You may also find items on the ground and use 't' or 'take'
-to add them to your inventory!
+to add them to your inventory! Type 'i' to view your inventory.

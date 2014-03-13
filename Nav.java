@@ -17,21 +17,27 @@ public class Nav{
   public static Locale loc[] = new Locale[11];
   public static ItemLocale items[] = new ItemLocale[4];
   public static boolean mapOut = false;
+  public static String inventory[] = new String[8];
+  public static int currentItem = 0;
   
   public static void main(String[] args) //main function
   {
     Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.");
     loc0.setCond("Good");
     loc[0] = loc0;
+    loc[0].setItem("Campus Map","\nYou found a Campus Map! Type 't' or 'take' to pick up!");
     Condition loc1 = new Condition(0,  "Leo", "You have arrived at the second largest freshman dorm.");
     loc1.setCond("Decent");
     loc[1] = loc1;
     loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?");
+    loc[2].setItem("Pencil","\nYou found a Pencil! Type 't' or 'take' to pick up!");
     PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?");
     loc3.setPH("about 5.  Way too low!");
     loc[3] = loc3;
     loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'");
+    loc[4].setItem("Football","\nYou found a Football! Type 't' or 'take' to pick up!");
     loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.");
+    loc[5].setItem("Weights","\nYou found a Weights! Do you even lift bro? Type 't' or 'take' to pick up!");
     loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...");
     loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.");
     loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!");
@@ -143,11 +149,20 @@ public class Nav{
       } else if ( command.equalsIgnoreCase("help")  || command.equalsIgnoreCase("h")) {
         help();
       }else if ( command.equalsIgnoreCase("t") || command.equalsIgnoreCase("take") ){
+        if(loc[currentLocale].getItem()!=""){
+          inventory[currentItem] = loc[currentLocale].getItem();
+          currentItem++;
+          System.out.println("You have picked up a " + loc[currentLocale].pickUp()+".");
+        }
         if(currentLocale==0)
           mapOut=true;
       } else if ( currentLocale == 10  && (command.equalsIgnoreCase("0")||command.equalsIgnoreCase("1")||command.equalsIgnoreCase("2")||command.equalsIgnoreCase("3"))){
-        if(items[Integer.parseInt(command)]!=null)
-             System.out.println(items[Integer.parseInt(command)].getName() + " purchased!\n");
+        if(items[Integer.parseInt(command)]!=null){
+          inventory[currentItem] = items[Integer.parseInt(command)].getName();
+          currentItem++;
+          System.out.println(items[Integer.parseInt(command)].getName() + " purchased!\n");
+          items[Integer.parseInt(command)].buy();
+        }
       } else if ( command.equalsIgnoreCase("m")||command.equalsIgnoreCase("map") ) {
         if(mapOut==true){
         System.out.println("This is a map.  Some paths may only be one way, so be careful!");
@@ -175,7 +190,13 @@ System.out.println("                              < (8)--HELL    >");
         }else{
         System.out.println("You do not own a map.");
         }
-      } 
+      } else if (command.equalsIgnoreCase("i")){
+        System.out.println("\nInventory: ");
+        for( int i = 0; i < inventory.length; i++)
+          System.out.println(inventory[i]);
+      }else{
+        System.out.println("Invalid Command.  Type 'h' or 'help' to view available commands.");
+      }
       
       if (dir > -1 && ((currentLocale == 10)&&(command.equalsIgnoreCase("0")||command.equalsIgnoreCase("1")||command.equalsIgnoreCase("2")||command.equalsIgnoreCase("3")))!=true) {  
         int newLocation = nav[currentLocale][dir];
@@ -198,6 +219,8 @@ System.out.println("                              < (8)--HELL    >");
         System.out.println("   'w' or 'west' to move west");
         System.out.println("   'q' or 'quit' to quit the game");
         System.out.println("   'm' or 'map' to display the map");
+        System.out.println("   't' or 'take' will pick up items");
+        System.out.println("   'i' will display your inventory");
     }
 
     private static void quit() {

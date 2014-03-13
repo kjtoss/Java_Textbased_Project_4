@@ -20,7 +20,7 @@ public class Condition extends Locale {
    // Other methods
    @Override
    public String toString() {
-      return super.toString() + ".  The condition for this dorm is: " + this.cond + ".";
+      return super.toString() + ".  \nThe condition for this dorm is: " + this.cond + ".";
    }
 
 

@@ -19,6 +19,11 @@ public class ItemLocale {
     return this.desc;
   }
   
+  public void buy(){
+    this.name = "";
+    this.desc = "";
+  }
+  
   public String toString() {
     return this.id + ": " + this.name + " - " + this.desc;
   }
@@ -30,5 +35,4 @@ public class ItemLocale {
   private int id;
   private String  name;
   private String  desc;
-  private boolean hasVisited = false;
 }
