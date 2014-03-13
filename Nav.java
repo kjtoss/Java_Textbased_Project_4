@@ -192,8 +192,11 @@ System.out.println("                              < (8)--HELL    >");
         }
       } else if (command.equalsIgnoreCase("i")){
         System.out.println("\nInventory: ");
-        for( int i = 0; i < inventory.length; i++)
+        for( int i = 0; i < inventory.length; i++){
+          if(inventory[i]!=null)
           System.out.println(inventory[i]);
+        }
+        System.out.println("");
       }else{
         System.out.println("Invalid Command.  Type 'h' or 'help' to view available commands.");
       }
