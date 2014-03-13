@@ -20,11 +20,16 @@ public class Nav{
   
   public static void main(String[] args) //main function
   {
-    
-    loc[0] = new Locale(0,  "Champagnat", "You have arrived at the largest freshman dorm.");
-    loc[1] = new Locale(1,  "Leo", "You have arrived at the second largest freshman dorm.");
+    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.");
+    loc0.setCond("Good");
+    loc[0] = loc0;
+    Condition loc1 = new Condition(0,  "Leo", "You have arrived at the second largest freshman dorm.");
+    loc1.setCond("Decent");
+    loc[1] = loc1;
     loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?");
-    loc[3] = new Locale(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?");
+    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?");
+    loc3.setPH("about 5.  Way too low!");
+    loc[3] = loc3;
     loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'");
     loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.");
     loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...");
@@ -33,7 +38,8 @@ public class Nav{
     loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!");
     loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?");
     
-    items[0] = new ItemLocale(0, "Campus Map", "A map to help navigate through the campus.  Use 'm' to display, once purchased.");
+    //items[0] = new ItemLocale(0, "Campus Map", "A map to help navigate through the campus.  Use 'm' to display, once purchased.");
+    items[0] = new ItemLocale(0, "Rags", "A bunch of old rags..");
     items[1] = new ItemLocale(1, "Wood Wand", "A piece of wood with special properties.");
     items[2] = new ItemLocale(2, "Quarter Staff", "A larger piece of wood with special properties.");
     items[3] = new ItemLocale(3, "Crystall Ball", "A glass ball used for telling the future and fortunes of visitors.");
@@ -89,8 +95,7 @@ public class Nav{
   }    
   
   private static void updateDisplay() {
-        System.out.println(loc[currentLocale].getName());
-        System.out.println(loc[currentLocale].getDesc());
+        System.out.println(loc[currentLocale].toString());
       if(currentLocale==10){
        for(int i=0; i<4;i++)
        {
@@ -137,11 +142,12 @@ public class Nav{
         System.exit(0);
       } else if ( command.equalsIgnoreCase("help")  || command.equalsIgnoreCase("h")) {
         help();
+      }else if ( command.equalsIgnoreCase("t") || command.equalsIgnoreCase("take") ){
+        if(currentLocale==0)
+          mapOut=true;
       } else if ( currentLocale == 10  && (command.equalsIgnoreCase("0")||command.equalsIgnoreCase("1")||command.equalsIgnoreCase("2")||command.equalsIgnoreCase("3"))){
         if(items[Integer.parseInt(command)]!=null)
              System.out.println(items[Integer.parseInt(command)].getName() + " purchased!\n");
-        if(command.equalsIgnoreCase("0"))
-          mapOut=true;
       } else if ( command.equalsIgnoreCase("m")||command.equalsIgnoreCase("map") ) {
         if(mapOut==true){
         System.out.println("This is a map.  Some paths may only be one way, so be careful!");

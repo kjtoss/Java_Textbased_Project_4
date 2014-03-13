@@ -1,9 +1,9 @@
 public class Locale {
   
-  public Locale(int id, String newName, String newDesc) {
+  public Locale(int id, String name, String desc) {
     this.id = id;
-    this.name = newName;
-    this.desc = newDesc;
+    this.name = name;
+    this.desc = desc;
   }
   
   // Getters and Setters
@@ -20,7 +20,7 @@ public class Locale {
   }
   
   public String toString() {
-    return "[Locale object: id=" + this.id + " name="+ this.name + " desc=" + this.desc + "]";
+    return "(ID=" + this.id + ") You are at "+ this.name + "\n" + this.desc;
   }
   
   
