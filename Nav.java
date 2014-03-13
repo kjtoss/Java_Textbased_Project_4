@@ -13,39 +13,45 @@ public class Nav{
   public static int moves = 0;                    //moves.
   public static int score = 0;                    //score.
   public static Locale loc[] = new Locale[11];
-  public static ItemLocale items[] = new ItemLocale[4];
+  public static ItemLocale items[] = new ItemLocale[9];
   public static boolean mapOut = false;
-  public static String inventory[] = new String[8];
+  public static String inventory[] = new String[9];
   public static int currentItem = 0;
   
   public static void main(String[] args) //main function
   {
-    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.");
-    loc0.setCond("Good");
-    loc[0] = loc0;
-    loc[0].setItem("Campus Map","\nYou found a Campus Map! Type 't' or 'take' to pick up!");
-    Condition loc1 = new Condition(0,  "Leo", "You have arrived at the second largest freshman dorm.");
-    loc1.setCond("Decent");
-    loc[1] = loc1;
-    loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?");
-    loc[2].setItem("Pencil","\nYou found a Pencil! Type 't' or 'take' to pick up!");
-    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?");
-    loc3.setPH("about 5.  Way too low!");
-    loc[3] = loc3;
-    loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'");
-    loc[4].setItem("Football","\nYou found a Football! Type 't' or 'take' to pick up!");
-    loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.");
-    loc[5].setItem("Weights","\nYou found a Weights! Do you even lift bro? Type 't' or 'take' to pick up!");
-    loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...");
-    loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.");
-    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!");
-    loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!");
-    loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?");
     
     items[0] = new ItemLocale(0, "Rags", "A bunch of old rags..");
     items[1] = new ItemLocale(1, "Wood Wand", "A piece of wood with special properties.");
     items[2] = new ItemLocale(2, "Quarter Staff", "A larger piece of wood with special properties.");
     items[3] = new ItemLocale(3, "Crystall Ball", "A glass ball used for telling the future and fortunes of visitors.");
+    items[4] = new ItemLocale(4, "Weights", "\nYou found a Weights! Do you even lift bro? Type 't' or 'take' to pick up!");
+    items[5] = new ItemLocale(5, "Campus Map", "\nYou found a Campus Map! Type 't' or 'take' to pick up!");
+    items[6] = new ItemLocale(6, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!");
+    items[7] = new ItemLocale(7, "Football", "\nYou found a Football! Type 't' or 'take' to pick up!");
+    items[8] = new ItemLocale(8, "Death's Scythe", "\nThe Scythe of Death!");
+    
+    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.");
+    loc0.setCond("Good");
+    loc[0] = loc0;
+    loc[0].setItem(items[5].getName(),items[5].getDesc());
+    Condition loc1 = new Condition(0,  "Leo", "You have arrived at the second largest freshman dorm.");
+    loc1.setCond("Decent");
+    loc[1] = loc1;
+    loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?");
+    loc[2].setItem(items[6].getName(),items[6].getDesc());
+    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?");
+    loc3.setPH("about 5.  Way too low!");
+    loc[3] = loc3;
+    loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'");
+    loc[4].setItem(items[7].getName(),items[7].getDesc());
+    loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.");
+    loc[5].setItem(items[4].getName(),items[4].getDesc());
+    loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...");
+    loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.");
+    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!");
+    loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!");
+    loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?");
     
     nav = new int[][]{
       //ID-Place {N, S, E, W, Untraveled}
@@ -149,6 +155,8 @@ public class Nav{
         inventory[currentItem] = loc[currentLocale].getItem();
         currentItem++;
         System.out.println("You have picked up a " + loc[currentLocale].pickUp()+".");
+      }else{
+        System.out.println("No items to take here!");
       }
       if(currentLocale==0)
         mapOut=true;

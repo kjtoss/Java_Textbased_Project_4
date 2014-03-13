@@ -46,5 +46,5 @@ public class Locale {
   private String  name;
   private String  desc;
   private String itemThere;
-  private String itemPhrase;
+  private String itemPhrase="";
 }
