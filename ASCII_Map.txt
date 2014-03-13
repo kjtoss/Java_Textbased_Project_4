@@ -1,0 +1,22 @@
+                       W
+                      / \
+                       |  
+                 S<----*---->N
+                       |
+                      \ /
+                       E
+ 
+                 ( (9)--Heaven )
+                       | |
+               --[ (3)--River  ]--            
+                       | |
+               \\[ (10)--Shop  ]//
+  (to river)           | |           (to river)
+[ (1)--Leo    ]--[ (0)--Champ   ]--[ (2)--SC      ]
+      | |              | |              | |
+[ (5)--McCann ]--[ (4)--Tenney  ]--[ (6)--Donnelly]
+      \ /              | |              \ /
+                 [ (7)--Highway ]
+                       \ /
+                 < (8)--HELL    >
+		
