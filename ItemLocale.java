@@ -1,12 +1,14 @@
 public class ItemLocale {
   
+  // Constructor
   public ItemLocale(int id, String newName, String newDesc) {
     this.id = id;
     this.name = newName;
     this.desc = newDesc;
   }
   
-  // Getters and Setters
+  //Getters
+  //Setters
   public int getID() {
     return this.id;
   }
@@ -28,10 +30,8 @@ public class ItemLocale {
     return this.id + ": " + this.name + " - " + this.desc;
   }
   
+  //privates:
   
-  //
-  // -- PRIVATE --
-  //
   private int id;
   private String  name;
   private String  desc;

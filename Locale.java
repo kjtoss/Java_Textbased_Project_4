@@ -1,12 +1,14 @@
 public class Locale {
   
+  // Constructor
   public Locale(int id, String name, String desc) {
     this.id = id;
     this.name = name;
     this.desc = desc;
   }
   
-  // Getters and Setters
+  //Getters
+  //Setters
   public int getID() {
     return this.id;
   }
@@ -20,8 +22,8 @@ public class Locale {
   }
   
   public void setItem(String item, String phrase){
-   this.itemThere = item; 
-   this.itemPhrase = phrase;
+    this.itemThere = item; 
+    this.itemPhrase = phrase;
   }
   public String getItem(){
     return this.itemThere;
@@ -38,10 +40,8 @@ public class Locale {
     return "(ID=" + this.id + ") You are at "+ this.name + "\n" + this.desc + this.itemPhrase;
   }
   
+//privates:
   
-  //
-  // -- PRIVATE --
-  //
   private int id;
   private String  name;
   private String  desc;
