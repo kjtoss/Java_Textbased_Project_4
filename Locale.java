@@ -1,7 +1,7 @@
 public class Locale {
   
   // Constructor
-  public Locale(int id, String name, String desc) {
+  public Locale(int id, String name, String desc, ListItem newNext) {
     this.id = id;
     this.name = name;
     this.desc = desc;
@@ -20,6 +20,14 @@ public class Locale {
   public String getDesc() {
     return this.desc;
   }
+  
+  public String getNext() {
+    return this.next;
+  }
+  
+  public void setNext(ListItem newNext) {
+        this.next = newNext;
+    }
   
   public void setItem(String item, String phrase){
     this.itemThere = item; 
@@ -47,4 +55,5 @@ public class Locale {
   private String  desc;
   private String itemThere;
   private String itemPhrase="";
+  private ListItem next = null;
 }
