@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 
-public class Nav{      
+public class JavaGame{      
   
   //Globals
   public static int currentLocale = 0;            //starting lcaole
@@ -31,53 +31,53 @@ public class Nav{
     items[7] = new ItemLocale(7, "Football", "\nYou found a Football! Type 't' or 'take' to pick up!");
     items[8] = new ItemLocale(8, "Death's Scythe", "\nThe Scythe of Death!");
     
-    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.");
+    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.",2,  1, 4, 10, 0);
     loc0.setCond("Good");
     loc[0] = loc0;
     loc[0].setItem(items[5].getName(),items[5].getDesc());
-    Condition loc1 = new Condition(0,  "Leo", "You have arrived at the second largest freshman dorm.");
+    Condition loc1 = new Condition(1,  "Leo", "You have arrived at the second largest freshman dorm.",0, -1, 5, -1, 1);
     loc1.setCond("Decent");
     loc[1] = loc1;
-    loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?");
+    loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?",-1,  0, 6, -1, 1);
     loc[2].setItem(items[6].getName(),items[6].getDesc());
-    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?");
+    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?",3,  3, 0, 9, 1);
     loc3.setPH("about 5.  Way too low!");
     loc[3] = loc3;
-    loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'");
+    loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'",6,  5, 7, 0, 1);
     loc[4].setItem(items[7].getName(),items[7].getDesc());
-    loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.");
+    loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.",4,  -1, 7, 1, 1);
     loc[5].setItem(items[4].getName(),items[4].getDesc());
-    loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...");
-    loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.");
-    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!");
-    loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!");
-    loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?");
+    loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...",-1,  4, 7, 2, 1);
+    loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.",-1,  -1, 8, 4, 1);
+    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!"-1,  -1, -1, -1, 2,);
+    loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!",-1,  -1, -1, -1, 3);
+    loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?",3,  3, 0, 3, 1);
     
-    nav = new int[][]{
-      //ID-Place {N, S, E, W, Untraveled}
-      /*0-Champ*/  
-      {2,  1, 4, 10, 0},
-        /*1-Leo*/  
-      {0, -1, 5, -1, 1},
-        /*2-SC*/  
-      {-1,  0, 6, -1, 1},
-        /*3-River*/  
-      {3,  3, 0, 9, 1},
-        /*4-FB*/  
-      {6,  5, 7, 0, 1},
-        /*5-McCann*/ 
-      {4,  -1, 7, 1, 1},
-        /*6-Donnelly*/
-      {-1,  4, 7, 2, 1},
-        /*7-Highway*/ 
-      {-1,  -1, 8, 4, 1},
-        /*8-Hell*/  
-      {-1,  -1, -1, -1, 2},
-        /*9-Heaven*/ 
-      {-1,  -1, -1, -1, 3},
-        /*10-Magick Shoppe*/ 
-      {3,  3, 0, 3, 1}
-    };
+    //nav = new int[][]{
+      ////ID-Place {N, S, E, W, Untraveled}
+      ///*0-Champ*/  
+      //{2,  1, 4, 10, 0},
+        ///*1-Leo*/  
+      //{0, -1, 5, -1, 1},
+        ///*2-SC*/  
+      //{-1,  0, 6, -1, 1},
+        ///*3-River*/  
+      //{3,  3, 0, 9, 1},
+        ///*4-FB*/  
+      //{6,  5, 7, 0, 1},
+        ///*5-McCann*/ 
+      //{4,  -1, 7, 1, 1},
+        ///*6-Donnelly*/
+      //{-1,  4, 7, 2, 1},
+        ///*7-Highway*/ 
+      //{-1,  -1, 8, 4, 1},
+        ///*8-Hell*/  
+      //{-1,  -1, -1, -1, 2},
+        ///*9-Heaven*/ 
+      //{-1,  -1, -1, -1, 3},
+        ///*10-Magick Shoppe*/ 
+      //{3,  3, 0, 3, 1}
+    //};
     
     System.out.println("Welcome to Magical Marist!");
     updateDisplay();

@@ -1,10 +1,15 @@
 public class Locale {
   
   // Constructor
-  public Locale(int id, String name, String desc, ListItem newNext) {
+  public Locale(int id, String name, String desc, ListItem newNextN, ListItem newNextS, ListItem newNextE, ListItem newNextW, int newVisitPoints) {
     this.id = id;
     this.name = name;
     this.desc = desc;
+    this.nextN=newNextN;
+    this.nextS=newNextS;
+    this.nextE=newNextE;
+    this.nextW=newNextW;
+    this.visitPoints=newVisitPoints
   }
   
   //Getters
@@ -25,8 +30,17 @@ public class Locale {
     return this.next;
   }
   
-  public void setNext(ListItem newNext) {
-        this.next = newNext;
+  public void setNextN(ListItem newNextN) {
+        this.nextN = newNextN;
+    }
+  public void setNextS(ListItem newNextS) {
+        this.nextS = newNextS;
+    }
+  public void setNextE(ListItem newNextE) {
+        this.nextE = newNextE;
+    }
+  public void setNextW(ListItem newNextW) {
+        this.nextW = newNextW;
     }
   
   public void setItem(String item, String phrase){
@@ -55,5 +69,9 @@ public class Locale {
   private String  desc;
   private String itemThere;
   private String itemPhrase="";
-  private ListItem next = null;
+  private ListItem nextN = null;
+  private ListItem nextS = null;
+  private ListItem nextE = null;
+  private ListItem nextW = null;
+  private int visitPoints;
 }
