@@ -1,7 +1,7 @@
 public class ItemLocale {
   
   // Constructor
-  public ItemLocale(int id, String newName, String newDesc, double newCost, ListItem newNext) {
+  public ItemLocale(int id, String newName, String newDesc, double newCost, int newNext) {
     this.id = id;
     this.name = newName;
     this.desc = newDesc;
@@ -27,11 +27,11 @@ public class ItemLocale {
         return this.cost;
     }
   
-  public String getNext() {
+  public int getNext() {
     return this.next;
   }
   
-  public void setNext(ListItem newNext) {
+  public void setNext(int newNext) {
         this.next = newNext;
     }
   
@@ -50,5 +50,5 @@ public class ItemLocale {
   private String  name;
   private String  desc;
   private double cost;
-  private ListItem next = null;
+  private int next = 0;
 }

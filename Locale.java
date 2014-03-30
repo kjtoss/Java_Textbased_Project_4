@@ -1,7 +1,7 @@
 public class Locale {
   
   // Constructor
-  public Locale(int id, String name, String desc, ListItem newNextN, ListItem newNextS, ListItem newNextE, ListItem newNextW, int newVisitPoints) {
+  public Locale(int id, String name, String desc, int newNextN, int newNextS, int newNextE, int newNextW, int newVisitPoints) {
     this.id = id;
     this.name = name;
     this.desc = desc;
@@ -9,7 +9,7 @@ public class Locale {
     this.nextS=newNextS;
     this.nextE=newNextE;
     this.nextW=newNextW;
-    this.visitPoints=newVisitPoints
+    this.visitPoints=newVisitPoints;
   }
   
   //Getters
@@ -25,22 +25,31 @@ public class Locale {
   public String getDesc() {
     return this.desc;
   }
-  
-  public String getNext() {
-    return this.next;
-  }
-  
-  public void setNextN(ListItem newNextN) {
+ 
+  public void setNextN(int newNextN) {
         this.nextN = newNextN;
     }
-  public void setNextS(ListItem newNextS) {
+  public void setNextS(int newNextS) {
         this.nextS = newNextS;
     }
-  public void setNextE(ListItem newNextE) {
+  public void setNextE(int newNextE) {
         this.nextE = newNextE;
     }
-  public void setNextW(ListItem newNextW) {
+  public void setNextW(int newNextW) {
         this.nextW = newNextW;
+    }
+  
+  public int getNextN() {
+       return this.nextN;
+    }
+  public int getNextS() {
+       return this.nextS;
+    }
+  public int getNextE() {
+       return this.nextE;
+    }
+  public int getNextW() {
+       return this.nextW;
     }
   
   public void setItem(String item, String phrase){
@@ -58,6 +67,14 @@ public class Locale {
     return item;
   }
   
+  public void setVisitPoints(int newVisitPoints) {
+        this.visitPoints = newVisitPoints;
+    }
+  
+  public int getVisitPoints() {
+       return this.visitPoints;
+    }
+  
   public String toString() {
     return "(ID=" + this.id + ") You are at "+ this.name + "\n" + this.desc + this.itemPhrase;
   }
@@ -69,9 +86,9 @@ public class Locale {
   private String  desc;
   private String itemThere;
   private String itemPhrase="";
-  private ListItem nextN = null;
-  private ListItem nextS = null;
-  private ListItem nextE = null;
-  private ListItem nextW = null;
+  private int nextN = -1;
+  private int nextS = -1;
+  private int nextE = -1;
+  private int nextW = -1;
   private int visitPoints;
 }

@@ -21,15 +21,15 @@ public class JavaGame{
   public static void main(String[] args) //main function
   {
     
-    items[0] = new ItemLocale(0, "Rags", "A bunch of old rags..");
-    items[1] = new ItemLocale(1, "Wood Wand", "A piece of wood with special properties.");
-    items[2] = new ItemLocale(2, "Quarter Staff", "A larger piece of wood with special properties.");
-    items[3] = new ItemLocale(3, "Crystall Ball", "A glass ball used for telling the future and fortunes of visitors.");
-    items[4] = new ItemLocale(4, "Weights", "\nYou found a Weights! Do you even lift bro? Type 't' or 'take' to pick up!");
-    items[5] = new ItemLocale(5, "Campus Map", "\nYou found a Campus Map! Type 't' or 'take' to pick up!");
-    items[6] = new ItemLocale(6, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!");
-    items[7] = new ItemLocale(7, "Football", "\nYou found a Football! Type 't' or 'take' to pick up!");
-    items[8] = new ItemLocale(8, "Death's Scythe", "\nThe Scythe of Death!");
+    items[0] = new ItemLocale(0, "Rags", "A bunch of old rags..",50,0);
+    items[1] = new ItemLocale(1, "Wood Wand", "A piece of wood with special properties.",50,0);
+    items[2] = new ItemLocale(2, "Quarter Staff", "A larger piece of wood with special properties.",50,0);
+    items[3] = new ItemLocale(3, "Crystall Ball", "A glass ball used for telling the future and fortunes of visitors.",50,0);
+    items[4] = new ItemLocale(4, "Weights", "\nYou found a Weights! Do you even lift bro? Type 't' or 'take' to pick up!",50,0);
+    items[5] = new ItemLocale(5, "Campus Map", "\nYou found a Campus Map! Type 't' or 'take' to pick up!",50,0);
+    items[6] = new ItemLocale(6, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!",50,0);
+    items[7] = new ItemLocale(7, "Football", "\nYou found a Football! Type 't' or 'take' to pick up!",50,0);
+    items[8] = new ItemLocale(8, "Death's Scythe", "\nThe Scythe of Death!",50,0);
     
     Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.",2,  1, 4, 10, 0);
     loc0.setCond("Good");
@@ -49,7 +49,7 @@ public class JavaGame{
     loc[5].setItem(items[4].getName(),items[4].getDesc());
     loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...",-1,  4, 7, 2, 1);
     loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.",-1,  -1, 8, 4, 1);
-    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!"-1,  -1, -1, -1, 2,);
+    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!",-1,  -1, -1, -1, 2);
     loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!",-1,  -1, -1, -1, 3);
     loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?",3,  3, 0, 3, 1);
     
@@ -118,13 +118,13 @@ public class JavaGame{
       ratio = score/moves;
     System.out.println("Achievement Ratio: " + (ratio));
     String posMoves = "Possible Moves:";
-    if(nav[currentLocale][0]!=-1)
+    if(loc[currentLocale].getNextN()!=-1)
       posMoves+="North ";
-    if(nav[currentLocale][1]!=-1)
+    if(loc[currentLocale].getNextS()!=-1)
       posMoves+="South ";
-    if(nav[currentLocale][2]!=-1)
+    if(loc[currentLocale].getNextE()!=-1)
       posMoves+="East ";
-    if(nav[currentLocale][3]!=-1)
+    if(loc[currentLocale].getNextW()!=-1)
       posMoves+="West ";
     System.out.println(posMoves);
     Scanner inputReader = new Scanner(System.in);
@@ -206,14 +206,28 @@ public class JavaGame{
     }
     
     if (dir > -1 && ((currentLocale == 10)&&(command.equalsIgnoreCase("0")||command.equalsIgnoreCase("1")||command.equalsIgnoreCase("2")||command.equalsIgnoreCase("3")))!=true) {  
-      int newLocation = nav[currentLocale][dir];
-      if (newLocation == INVALID) {
+      int newLocation=-1;
+      switch(dir){
+      case 0: 
+      newLocation = loc[currentLocale].getNextN();
+      break;
+      case 1: 
+      newLocation = loc[currentLocale].getNextS();
+      break;
+      case 2: 
+      newLocation = loc[currentLocale].getNextE();
+      break;
+      case 3: 
+      newLocation = loc[currentLocale].getNextW();
+      break;
+      }
+      if (newLocation == -1) {
         System.out.println("You cannot go that way.");
       } else {
         currentLocale = newLocation;
         moves +=1;
-        score = score + 5*nav[newLocation][4];
-        nav[newLocation][4]=0;
+        score = score + 5*loc[newLocation].getVisitPoints();
+        loc[newLocation].setVisitPoints(0);
       }
     }
   }

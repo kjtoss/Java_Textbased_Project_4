@@ -5,8 +5,8 @@ public class PH extends Locale {
   //
   
   // Constructor
-  public PH(int id, String name, String desc) {
-    super(id,name,desc);
+  public PH(int id, String name, String desc, int nextN, int nextS, int nextE, int nextW, int visitPoints) {
+    super(id,name,desc,nextN,nextS,nextE,nextW,visitPoints);
   }
   
   // Getters and Setters
