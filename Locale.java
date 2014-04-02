@@ -1,14 +1,10 @@
 public class Locale {
   
   // Constructor
-  public Locale(int id, String name, String desc, int newNextN, int newNextS, int newNextE, int newNextW, int newVisitPoints) {
+  public Locale(int id, String name, String desc, int newVisitPoints) {
     this.id = id;
     this.name = name;
     this.desc = desc;
-    this.nextN=newNextN;
-    this.nextS=newNextS;
-    this.nextE=newNextE;
-    this.nextW=newNextW;
     this.visitPoints=newVisitPoints;
   }
   
@@ -26,29 +22,29 @@ public class Locale {
     return this.desc;
   }
  
-  public void setNextN(int newNextN) {
+  public void setNextN(Locale newNextN) {
         this.nextN = newNextN;
     }
-  public void setNextS(int newNextS) {
+  public void setNextS(Locale newNextS) {
         this.nextS = newNextS;
     }
-  public void setNextE(int newNextE) {
+  public void setNextE(Locale newNextE) {
         this.nextE = newNextE;
     }
-  public void setNextW(int newNextW) {
+  public void setNextW(Locale newNextW) {
         this.nextW = newNextW;
     }
   
-  public int getNextN() {
+  public Locale getNextN() {
        return this.nextN;
     }
-  public int getNextS() {
+  public Locale getNextS() {
        return this.nextS;
     }
-  public int getNextE() {
+  public Locale getNextE() {
        return this.nextE;
     }
-  public int getNextW() {
+  public Locale getNextW() {
        return this.nextW;
     }
   
@@ -86,9 +82,9 @@ public class Locale {
   private String  desc;
   private String itemThere;
   private String itemPhrase="";
-  private int nextN = -1;
-  private int nextS = -1;
-  private int nextE = -1;
-  private int nextW = -1;
+  private Locale nextN = null;
+  private Locale nextS = null;
+  private Locale nextE = null;
+  private Locale nextW =null;
   private int visitPoints;
 }

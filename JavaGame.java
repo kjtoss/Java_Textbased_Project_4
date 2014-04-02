@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class JavaGame{      
   
   //Globals
-  public static int currentLocale = 0;            //starting lcaole
+  public static Locale currentLocale = new Locale(0,  "Champagnat", "You have arrived at the largest freshman dorm.", 0);            //starting lcaole
   public static String command;                   //player inputs
   public static boolean stillPlaying = true;      //game loop.
   public static int[][]  nav;                     //an uninitialized array for navigating (int int)
@@ -17,41 +17,71 @@ public class JavaGame{
   public static boolean mapOut = false;
   public static String inventory[] = new String[9];
   public static int currentItem = 0;
+  public static float currency = 50;
   
   public static void main(String[] args) //main function
   {
     
-    items[0] = new ItemLocale(0, "Rags", "A bunch of old rags..",50,0);
-    items[1] = new ItemLocale(1, "Wood Wand", "A piece of wood with special properties.",50,0);
-    items[2] = new ItemLocale(2, "Quarter Staff", "A larger piece of wood with special properties.",50,0);
-    items[3] = new ItemLocale(3, "Crystall Ball", "A glass ball used for telling the future and fortunes of visitors.",50,0);
-    items[4] = new ItemLocale(4, "Weights", "\nYou found a Weights! Do you even lift bro? Type 't' or 'take' to pick up!",50,0);
-    items[5] = new ItemLocale(5, "Campus Map", "\nYou found a Campus Map! Type 't' or 'take' to pick up!",50,0);
-    items[6] = new ItemLocale(6, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!",50,0);
-    items[7] = new ItemLocale(7, "Football", "\nYou found a Football! Type 't' or 'take' to pick up!",50,0);
-    items[8] = new ItemLocale(8, "Death's Scythe", "\nThe Scythe of Death!",50,0);
+    items[0] = new ItemLocale(0, "Rags", "A bunch of old rags..",5,0);
+    items[1] = new ItemLocale(1, "Wood Wand", "A piece of wood with special properties.",10,0);
+    items[2] = new ItemLocale(2, "Quarter Staff", "A larger piece of wood with special properties.",12,0);
+    items[3] = new ItemLocale(3, "Crystall Ball", "A glass ball used for telling the future and fortunes of visitors.",20,0);
+    items[4] = new ItemLocale(4, "Weights", "\nYou found a Weights and (c)11! Do you even lift bro? Type 't' or 'take' to pick up!",20,0);
+    items[5] = new ItemLocale(5, "Campus Map", "\nYou found a Campus Map and (c)11! Type 't' or 'take' to pick up!",5,0);
+    items[6] = new ItemLocale(6, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!",5,0);
+    items[7] = new ItemLocale(7, "Football", "\nYou found a Football and (c)11! Type 't' or 'take' to pick up!",10,0);
+    items[8] = new ItemLocale(8, "Death's Scythe", "\nThe Scythe of Death!",0,0);
     
-    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.",2,  1, 4, 10, 0);
+    Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.", 0);//2,  1, 4, 10
     loc0.setCond("Good");
     loc[0] = loc0;
     loc[0].setItem(items[5].getName(),items[5].getDesc());
-    Condition loc1 = new Condition(1,  "Leo", "You have arrived at the second largest freshman dorm.",0, -1, 5, -1, 1);
+    Condition loc1 = new Condition(1,  "Leo", "You have arrived at the second largest freshman dorm.", 1);//0, -1, 5, -1
     loc1.setCond("Decent");
     loc[1] = loc1;
-    loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?",-1,  0, 6, -1, 1);
+    loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?", 1);//-1,  0, 6, -1
     loc[2].setItem(items[6].getName(),items[6].getDesc());
-    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?",3,  3, 0, 9, 1);
+    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?", 1);//3,  3, 0, 9
     loc3.setPH("about 5.  Way too low!");
     loc[3] = loc3;
-    loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'",6,  5, 7, 0, 1);
+    loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'", 1);//6,  5, 7, 0
     loc[4].setItem(items[7].getName(),items[7].getDesc());
-    loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.",4,  -1, 7, 1, 1);
+    loc[5] = new Locale(5,  "McCann Center", "You have arrived at the building for swimming, basketball, and workouts.", 1);//4,  -1, 7, 1
     loc[5].setItem(items[4].getName(),items[4].getDesc());
-    loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...",-1,  4, 7, 2, 1);
-    loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.",-1,  -1, 8, 4, 1);
-    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!",-1,  -1, -1, -1, 2);
-    loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!",-1,  -1, -1, -1, 3);
-    loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?",3,  3, 0, 3, 1);
+    loc[6] = new Locale(6,  "Donnelly", "What is this? A building with both science and fashion? Odd...", 1);//-1,  4, 7, 2
+    loc[7] = new Locale(7, "Highway", "You have found yourself mistakenly walking onto a highway, where a train is heading at you. You must go back or die.", 1);//-1,  -1, 8, 4
+    loc[8] = new Locale(8, "Hell", "The train runs over you, crushing ever bone in your body.\nDeath brings down his arms, forcing a scythe that tears through your body, ripping your soul from it.\n\nYou have obtained Death's Scythe!", 2);//-1,  -1, -1, -1
+    loc[9] = new Locale(9, "Heaven", "You approach the light, to find out that you were not lost.  You were dead all along.  Now you have found Heaven!", 3);//-1,  -1, -1, -1
+    loc[10] = new Locale(10, "Magick Shoppe", "What would you like to purchase?", 1);//3,  3, 0, 3
+    //New Navigation:
+    loc[0].setNextN(loc[2]);
+    loc[0].setNextS(loc[1]);
+    loc[0].setNextE(loc[4]);
+    loc[0].setNextW(loc[10]);
+    loc[1].setNextN(loc[0]);
+    loc[1].setNextE(loc[5]);
+    loc[2].setNextS(loc[0]);
+    loc[2].setNextE(loc[6]);
+    loc[3].setNextN(loc[3]);
+    loc[3].setNextS(loc[3]);
+    loc[3].setNextE(loc[0]);
+    loc[3].setNextW(loc[9]);
+    loc[4].setNextN(loc[6]);
+    loc[4].setNextS(loc[5]);
+    loc[4].setNextE(loc[7]);
+    loc[4].setNextW(loc[0]);
+    loc[5].setNextN(loc[4]);
+    loc[5].setNextE(loc[7]);
+    loc[5].setNextW(loc[1]);
+    loc[6].setNextS(loc[4]);
+    loc[6].setNextE(loc[7]);
+    loc[6].setNextW(loc[2]);
+    loc[7].setNextE(loc[8]);
+    loc[7].setNextW(loc[4]);
+    loc[10].setNextN(loc[3]);
+    loc[10].setNextS(loc[3]);
+    loc[10].setNextE(loc[0]);
+    loc[10].setNextW(loc[3]);
     
     //nav = new int[][]{
       ////ID-Place {N, S, E, W, Untraveled}
@@ -86,7 +116,7 @@ public class JavaGame{
       getCommand();
       navigate();
       updateDisplay();
-      if(currentLocale==9||currentLocale==8){
+      if(currentLocale.getID()==9||currentLocale.getID()==8){
         System.out.println("[" + moves + " moves, score " + score + "] ");
         float ratio = 0;
         if(moves!=0)
@@ -102,8 +132,8 @@ public class JavaGame{
   }    
   
   private static void updateDisplay() {
-    System.out.println(loc[currentLocale].toString());
-    if(currentLocale==10){
+    System.out.println(loc[currentLocale.getID()].toString());
+    if(currentLocale.getID()==10){
       for(int i=0; i<4;i++)
       {
         System.out.println(items[i].toString());
@@ -118,13 +148,13 @@ public class JavaGame{
       ratio = score/moves;
     System.out.println("Achievement Ratio: " + (ratio));
     String posMoves = "Possible Moves:";
-    if(loc[currentLocale].getNextN()!=-1)
+    if(loc[currentLocale.getID()].getNextN()!=null)
       posMoves+="North ";
-    if(loc[currentLocale].getNextS()!=-1)
+    if(loc[currentLocale.getID()].getNextS()!=null)
       posMoves+="South ";
-    if(loc[currentLocale].getNextE()!=-1)
+    if(loc[currentLocale.getID()].getNextE()!=null)
       posMoves+="East ";
-    if(loc[currentLocale].getNextW()!=-1)
+    if(loc[currentLocale.getID()].getNextW()!=null)
       posMoves+="West ";
     System.out.println(posMoves);
     Scanner inputReader = new Scanner(System.in);
@@ -132,7 +162,6 @@ public class JavaGame{
   }   
   
   private static void navigate() {
-    
     final int INVALID = -1;
     int dir = INVALID;  // This will get set to a value > 0 if a direction command was entered. 
     
@@ -151,16 +180,21 @@ public class JavaGame{
     } else if ( command.equalsIgnoreCase("help")  || command.equalsIgnoreCase("h")) {
       help();
     }else if ( command.equalsIgnoreCase("t") || command.equalsIgnoreCase("take") ){
-      if(loc[currentLocale].getItem()!=""){
-        inventory[currentItem] = loc[currentLocale].getItem();
+      if(loc[currentLocale.getID()].getItem()!=""){
+        inventory[currentItem] = loc[currentLocale.getID()].getItem();
         currentItem++;
-        System.out.println("You have picked up a " + loc[currentLocale].pickUp()+".");
+        if(currentLocale.getID()==0||currentLocale.getID()==4||currentLocale.getID()==5){
+          System.out.println("You have picked up a " + loc[currentLocale.getID()].pickUp()+" and 11 coins! [(c)11].");
+          currency+=11;
+        }else{
+          System.out.println("You have picked up a " + loc[currentLocale.getID()].pickUp()+".");
+        }
       }else{
         System.out.println("No items to take here!");
       }
-      if(currentLocale==0)
+      if(currentLocale.getID()==0)
         mapOut=true;
-    } else if ( currentLocale == 10  && (command.equalsIgnoreCase("0")||command.equalsIgnoreCase("1")||command.equalsIgnoreCase("2")||command.equalsIgnoreCase("3"))){
+    } else if ( currentLocale.getID() == 10  && (command.equalsIgnoreCase("n")||command.equalsIgnoreCase("s")||command.equalsIgnoreCase("e")||command.equalsIgnoreCase("w"))!=true && (command.equalsIgnoreCase("north")||command.equalsIgnoreCase("south")||command.equalsIgnoreCase("east")||command.equalsIgnoreCase("west"))!=true){
       if(items[Integer.parseInt(command)]!=null){
         inventory[currentItem] = items[Integer.parseInt(command)].getName();
         currentItem++;
@@ -195,7 +229,7 @@ public class JavaGame{
         System.out.println("You do not own a map.");
       }
     } else if (command.equalsIgnoreCase("i")){
-      System.out.println("\nInventory: ");
+      System.out.println("\nCurrent Balance: (c)"+currency+"\nInventory: ");
       for( int i = 0; i < inventory.length; i++){
         if(inventory[i]!=null)
           System.out.println(inventory[i]);
@@ -205,29 +239,33 @@ public class JavaGame{
       System.out.println("Invalid Command.  Type 'h' or 'help' to view available commands.");
     }
     
-    if (dir > -1 && ((currentLocale == 10)&&(command.equalsIgnoreCase("0")||command.equalsIgnoreCase("1")||command.equalsIgnoreCase("2")||command.equalsIgnoreCase("3")))!=true) {  
-      int newLocation=-1;
+    if (dir > -1){
+      Locale newLocation=null;
       switch(dir){
-      case 0: 
-      newLocation = loc[currentLocale].getNextN();
-      break;
-      case 1: 
-      newLocation = loc[currentLocale].getNextS();
-      break;
-      case 2: 
-      newLocation = loc[currentLocale].getNextE();
-      break;
-      case 3: 
-      newLocation = loc[currentLocale].getNextW();
-      break;
+        case 0: 
+          if(loc[currentLocale.getID()].getNextN()!=null)
+          newLocation = loc[loc[currentLocale.getID()].getNextN().getID()];
+        break;
+        case 1: 
+          if(loc[currentLocale.getID()].getNextS()!=null)
+          newLocation = loc[loc[currentLocale.getID()].getNextS().getID()];
+        break;
+        case 2: 
+          if(loc[currentLocale.getID()].getNextE()!=null)
+          newLocation = loc[loc[currentLocale.getID()].getNextE().getID()];
+        break;
+        case 3: 
+          if(loc[currentLocale.getID()].getNextN()!=null)
+          newLocation = loc[loc[currentLocale.getID()].getNextW().getID()];
+        break;
       }
-      if (newLocation == -1) {
+      if (newLocation == null) {
         System.out.println("You cannot go that way.");
       } else {
         currentLocale = newLocation;
         moves +=1;
-        score = score + 5*loc[newLocation].getVisitPoints();
-        loc[newLocation].setVisitPoints(0);
+        score = score + 5*loc[newLocation.getID()].getVisitPoints();
+        loc[newLocation.getID()].setVisitPoints(0);
       }
     }
   }
