@@ -1,12 +1,10 @@
-public class ItemLocale {
+public class ListInventory {
   
   // Constructor
-  public ItemLocale(int id, String newName, String newDesc, double newCost, int newNext) {
+  public ListInventory(int id, String newName, String newDesc) {
     this.id = id;
     this.name = newName;
     this.desc = newDesc;
-    this.cost = newCost;
-    this.next = newNext;
   }
   
   //Getters
@@ -23,15 +21,12 @@ public class ItemLocale {
     return this.desc;
   }
 
-    public double getCost() {
-        return this.cost;
-    }
   
-  public int getNext() {
+  public ListInventory getNext() {
     return this.next;
   }
   
-  public void setNext(int newNext) {
+  public void setNext(ListInventory newNext) {
         this.next = newNext;
     }
   
@@ -41,7 +36,7 @@ public class ItemLocale {
   }
   
   public String toString() {
-    return this.id + ": " + this.name + " - " + this.desc + " cost = " + this.cost;
+    return this.id + ": " + this.name + " - " + this.desc;
   }
   
   //privates:
@@ -49,6 +44,5 @@ public class ItemLocale {
   private int id;
   private String  name;
   private String  desc;
-  private double cost;
-  private int next = 0;
+  private ListInventory next = null;
 }
