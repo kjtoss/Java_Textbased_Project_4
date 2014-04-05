@@ -20,15 +20,15 @@ public class ListInventory {
   public String getDesc() {
     return this.desc;
   }
-
+  
   
   public ListInventory getNext() {
     return this.next;
   }
   
   public void setNext(ListInventory newNext) {
-        this.next = newNext;
-    }
+    this.next = newNext;
+  }
   
   public void buy(){
     this.name = "";

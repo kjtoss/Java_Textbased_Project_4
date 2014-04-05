@@ -93,29 +93,29 @@ public class JavaGame{
     loc[10].setNextW(loc[3]);
     
     //nav = new int[][]{
-      ////ID-Place {N, S, E, W, Untraveled}
-      ///*0-Champ*/  
-      //{2,  1, 4, 10, 0},
-        ///*1-Leo*/  
-      //{0, -1, 5, -1, 1},
-        ///*2-SC*/  
-      //{-1,  0, 6, -1, 1},
-        ///*3-River*/  
-      //{3,  3, 0, 9, 1},
-        ///*4-FB*/  
-      //{6,  5, 7, 0, 1},
-        ///*5-McCann*/ 
-      //{4,  -1, 7, 1, 1},
-        ///*6-Donnelly*/
-      //{-1,  4, 7, 2, 1},
-        ///*7-Highway*/ 
-      //{-1,  -1, 8, 4, 1},
-        ///*8-Hell*/  
-      //{-1,  -1, -1, -1, 2},
-        ///*9-Heaven*/ 
-      //{-1,  -1, -1, -1, 3},
-        ///*10-Magick Shoppe*/ 
-      //{3,  3, 0, 3, 1}
+    ////ID-Place {N, S, E, W, Untraveled}
+    ///*0-Champ*/  
+    //{2,  1, 4, 10, 0},
+    ///*1-Leo*/  
+    //{0, -1, 5, -1, 1},
+    ///*2-SC*/  
+    //{-1,  0, 6, -1, 1},
+    ///*3-River*/  
+    //{3,  3, 0, 9, 1},
+    ///*4-FB*/  
+    //{6,  5, 7, 0, 1},
+    ///*5-McCann*/ 
+    //{4,  -1, 7, 1, 1},
+    ///*6-Donnelly*/
+    //{-1,  4, 7, 2, 1},
+    ///*7-Highway*/ 
+    //{-1,  -1, 8, 4, 1},
+    ///*8-Hell*/  
+    //{-1,  -1, -1, -1, 2},
+    ///*9-Heaven*/ 
+    //{-1,  -1, -1, -1, 3},
+    ///*10-Magick Shoppe*/ 
+    //{3,  3, 0, 3, 1}
     //};
     
     System.out.println("Welcome to Magical Marist!");
@@ -142,12 +142,12 @@ public class JavaGame{
   
   private static void updateDisplay() {
     System.out.println(loc[currentLocale.getID()].toString());
-   // if(currentLocale.getID()==10){
-      //for(int i=0; i<4;i++)
+    // if(currentLocale.getID()==10){
+    //for(int i=0; i<4;i++)
     //  {
-       // System.out.println(items[i].toString());
-      //}
-   // }
+    // System.out.println(items[i].toString());
+    //}
+    // }
     if(currentLocale.getID()==10){System.out.println("[" + moves + " moves, score " + score + "] ");
       float ratio = 0;
       if(moves!=0)
@@ -170,15 +170,15 @@ public class JavaGame{
         atShop=false;
       }else{
         if(currency-magicShop.getCost()>0){
-        currency-=magicShop.getCost();
-        items[in] = new ListInventory(in, magicShop.getName(),"Cost: (c)" + magicShop.getCost());
-        inventory[currentItem] = items[in].getName();
-        items[in].setNext(null);//Next is null due to being unnecessary
-        currentItem++;
-        in++;
-        System.out.println("Current Balance: (c)"+currency);
+          currency-=magicShop.getCost();
+          items[in] = new ListInventory(in, magicShop.getName(),"Cost: (c)" + magicShop.getCost());
+          inventory[currentItem] = items[in].getName();
+          items[in].setNext(null);//Next is null due to being unnecessary
+          currentItem++;
+          in++;
+          System.out.println("Current Balance: (c)"+currency);
         }else{
-        System.out.println("Not enough money.  \nCurrent Balance: (c)"+currency);
+          System.out.println("Not enough money.  \nCurrent Balance: (c)"+currency);
         }
       }
     }
@@ -237,13 +237,13 @@ public class JavaGame{
       }
       if(currentLocale.getID()==0)
         mapOut=true;
-  //  } else if ( currentLocale.getID() == 10  && (command.equalsIgnoreCase("n")||command.equalsIgnoreCase("s")||command.equalsIgnoreCase("e")||command.equalsIgnoreCase("w"))!=true && (command.equalsIgnoreCase("north")||command.equalsIgnoreCase("south")||command.equalsIgnoreCase("east")||command.equalsIgnoreCase("west"))!=true){
-     // if(items[Integer.parseInt(command)]!=null){
-    //    inventory[currentItem] = items[Integer.parseInt(command)].getName();
-  //      currentItem++;
-  //    System.out.println(items[Integer.parseInt(command)].getName() + " purchased!\n");
+      //  } else if ( currentLocale.getID() == 10  && (command.equalsIgnoreCase("n")||command.equalsIgnoreCase("s")||command.equalsIgnoreCase("e")||command.equalsIgnoreCase("w"))!=true && (command.equalsIgnoreCase("north")||command.equalsIgnoreCase("south")||command.equalsIgnoreCase("east")||command.equalsIgnoreCase("west"))!=true){
+      // if(items[Integer.parseInt(command)]!=null){
+      //    inventory[currentItem] = items[Integer.parseInt(command)].getName();
+      //      currentItem++;
+      //    System.out.println(items[Integer.parseInt(command)].getName() + " purchased!\n");
       //  items[Integer.parseInt(command)].buy();
-    //  }
+      //  }
     } else if ( command.equalsIgnoreCase("m")||command.equalsIgnoreCase("map") ) {
       if(mapOut==true){
         System.out.println("This is a map.  Some paths may only be one way, so be careful!");
@@ -288,19 +288,19 @@ public class JavaGame{
         case 0: 
           if(loc[currentLocale.getID()].getNextN()!=null)
           newLocation = loc[loc[currentLocale.getID()].getNextN().getID()];
-        break;
+          break;
         case 1: 
           if(loc[currentLocale.getID()].getNextS()!=null)
           newLocation = loc[loc[currentLocale.getID()].getNextS().getID()];
-        break;
+          break;
         case 2: 
           if(loc[currentLocale.getID()].getNextE()!=null)
           newLocation = loc[loc[currentLocale.getID()].getNextE().getID()];
-        break;
+          break;
         case 3: 
           if(loc[currentLocale.getID()].getNextN()!=null)
           newLocation = loc[loc[currentLocale.getID()].getNextW().getID()];
-        break;
+          break;
       }
       if (newLocation == null) {
         System.out.println("You cannot go that way.");
@@ -311,7 +311,7 @@ public class JavaGame{
         loc[newLocation.getID()].setVisitPoints(0);
       }
     }
-      
+    
   }
   private static void help() {
     System.out.println("The commands are as follows:");

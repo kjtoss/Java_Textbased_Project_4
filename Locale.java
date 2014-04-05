@@ -21,32 +21,32 @@ public class Locale {
   public String getDesc() {
     return this.desc;
   }
- 
+  
   public void setNextN(Locale newNextN) {
-        this.nextN = newNextN;
-    }
+    this.nextN = newNextN;
+  }
   public void setNextS(Locale newNextS) {
-        this.nextS = newNextS;
-    }
+    this.nextS = newNextS;
+  }
   public void setNextE(Locale newNextE) {
-        this.nextE = newNextE;
-    }
+    this.nextE = newNextE;
+  }
   public void setNextW(Locale newNextW) {
-        this.nextW = newNextW;
-    }
+    this.nextW = newNextW;
+  }
   
   public Locale getNextN() {
-       return this.nextN;
-    }
+    return this.nextN;
+  }
   public Locale getNextS() {
-       return this.nextS;
-    }
+    return this.nextS;
+  }
   public Locale getNextE() {
-       return this.nextE;
-    }
+    return this.nextE;
+  }
   public Locale getNextW() {
-       return this.nextW;
-    }
+    return this.nextW;
+  }
   
   public void setItem(String item, String phrase){
     this.itemThere = item; 
@@ -64,12 +64,12 @@ public class Locale {
   }
   
   public void setVisitPoints(int newVisitPoints) {
-        this.visitPoints = newVisitPoints;
-    }
+    this.visitPoints = newVisitPoints;
+  }
   
   public int getVisitPoints() {
-       return this.visitPoints;
-    }
+    return this.visitPoints;
+  }
   
   public String toString() {
     return "(ID=" + this.id + ") You are at "+ this.name + "\n" + this.desc + this.itemPhrase;
