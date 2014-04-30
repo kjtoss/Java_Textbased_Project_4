@@ -18,8 +18,16 @@ public class Locale {
     return this.name;
   }
   
+  public void setName(String namee) {
+    this.name = namee;
+  }
+  
   public String getDesc() {
     return this.desc;
+  }
+  
+  public void setDesc(String descc) {
+    this.desc = descc;
   }
   
   public void setNextN(Locale newNextN) {

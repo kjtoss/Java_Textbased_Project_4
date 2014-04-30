@@ -21,6 +21,9 @@ public class JavaGame{
   public static boolean atShop = false;
   public static ListTester magicShop = new ListTester();
   public static int in = 0; //current number of items in list
+  public static boolean boatBuilt = false;
+  public static String[] trackMoves = new String[99];
+  public static int iMove = 0;
   
   public static void main(String[] args) //main function
   {    
@@ -50,7 +53,7 @@ public class JavaGame{
     loc[1] = loc1;
     loc[2] = new Locale(2, "Student Center", "You step into the main building on campus.  Hmmm what campus is this?", 1);//-1,  0, 6, -1
     loc[2].setItem(items[2].getName(),items[2].getDesc());
-    PH loc3 = new PH(3,  "River", "You step into a large River.  It looks like the Hudson.. but what is that light on the other side?", 1);//3,  3, 0, 9
+    PH loc3 = new PH(3,  "River", "You step upto a large River.  It looks like the Hudson.. but what is that light on the other side?\nA large man appears, exclaiming: 'I will provide you with a boat to cross it.. if you can answer one question'....\n'What always runs but never walks, often murmurs, never talks, has a bed but never sleeps, has a mouth but never eats?'", 1);//3,  3, 0, 9
     loc3.setPH("about 5.  Way too low!");
     loc[3] = loc3;
     loc[4] = new Locale(4, "Football Field", "The sign says 'Tenney Stadium.'", 1);//6,  5, 7, 0
@@ -74,7 +77,7 @@ public class JavaGame{
     loc[3].setNextN(loc[3]);
     loc[3].setNextS(loc[3]);
     loc[3].setNextE(loc[0]);
-    loc[3].setNextW(loc[9]);
+    loc[3].setNextW(loc[3]);
     loc[4].setNextN(loc[6]);
     loc[4].setNextS(loc[5]);
     loc[4].setNextE(loc[7]);
@@ -134,6 +137,30 @@ public class JavaGame{
         String posMoves = "Possible Moves:";
         stillPlaying=false;
       }
+    }
+    
+    Scanner inputReader = new Scanner(System.in);
+    System.out.println("Would you like to view your tracks used to get to the end of the game?");
+    System.out.println("Type 'forward' to view from beginning, 'backward' to view from the end, or 'no' to just end the game.");    
+    command = inputReader.nextLine();
+    boolean loop = true;
+    while(loop){
+    if ( command.equalsIgnoreCase("forward") ){
+    for(int i = 0; i< trackMoves.length; i++){
+      if(trackMoves[i]!=null)
+        System.out.println(trackMoves[i]);
+    }
+    loop=false;
+    }else if(command.equalsIgnoreCase("backward")){
+      for(int i = 99; i>-1; i++){
+        if(trackMoves[i]!=null)
+          System.out.println(trackMoves[i]);
+      }
+      loop=false;
+    }else if(command.equalsIgnoreCase("no"))
+    {
+      loop=false;
+    }
     }
     
     System.out.println("Thank you for playing.");
@@ -216,7 +243,15 @@ public class JavaGame{
       dir = 2;
     } else if ( command.equalsIgnoreCase("west")  || command.equalsIgnoreCase("w") ) {
       dir = 3;
-    } else if ( command.equalsIgnoreCase("quit")  || command.equalsIgnoreCase("q")) {
+    }else if(command.equalsIgnoreCase("river") && currentLocale==loc[3]){
+      if(boatBuilt!=true)
+        boatBuilt = true;
+      if(boatBuilt==true && loc[3].getNextW()!=loc[9] ){
+        loc[3].setNextW(loc[9]);
+        loc[3].setDesc("You step upto a large River.  It looks like the Hudson.. but what is that light on the other side?");
+        System.out.println("You have successfully built a boat!");
+      }
+    }else if ( command.equalsIgnoreCase("quit")  || command.equalsIgnoreCase("q")) {
       //quit();
       System.out.println("Thank you for playing.");
       System.exit(0);
@@ -256,9 +291,7 @@ public class JavaGame{
         System.out.println("                                  E\n");
         System.out.println("                              ( (9)--Heaven )");
         System.out.println("                                  | |");
-        System.out.println("                            --[ (3)--River  ]--");            
-        System.out.println("                                  | |");
-        System.out.println("                               [ (10)--Shop  ]");
+        System.out.println("                            --[ (3)--River  ]--");          
         System.out.println("        (to river)           | |           (to river)");
         System.out.println("  [ (1)--Leo         ]--[ (0)--Champ   ]--[ (2)--SC      ]");
         System.out.println("                 | |              | |              | |");
@@ -267,6 +300,7 @@ public class JavaGame{
         System.out.println("                              [ (7)--Highway ]");
         System.out.println("                                  | |");
         System.out.println("                              < (8)--HELL    >");
+        System.out.println("#10 - Shop is hidden somewhere on campus.. however it is too secretive to be mapped out!");
         
       }else{
         System.out.println("You do not own a map.");
@@ -298,10 +332,12 @@ public class JavaGame{
           newLocation = loc[loc[currentLocale.getID()].getNextE().getID()];
           break;
         case 3: 
-          if(loc[currentLocale.getID()].getNextN()!=null)
-          newLocation = loc[loc[currentLocale.getID()].getNextW().getID()];
+          if(loc[currentLocale.getID()].getNextW()!=null)
+            newLocation = loc[loc[currentLocale.getID()].getNextW().getID()];
           break;
       }
+      trackMoves[iMove]=loc[currentLocale.getID()].getName();
+      iMove++;
       if (newLocation == null) {
         System.out.println("You cannot go that way.");
       } else {

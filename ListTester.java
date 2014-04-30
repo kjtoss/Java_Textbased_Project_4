@@ -15,7 +15,11 @@ public class ListTester {  //I understand making a separate function for this is
       this.readMagicItemsFromFileToList(fileName, lm1);
       loaded=true;
     }
-    // Display the list of items.
+    
+     // Declare an array for the items.
+        ListItem[] items = new ListItem[lm1.getLength()];
+        readMagicItemsFromFileToArray(fileName, items);
+        selectionSort(items);
     
     // Ask player for an item.
     Scanner inputReader = new Scanner(System.in);
@@ -83,6 +87,34 @@ public class ListTester {  //I understand making a separate function for this is
     return retVal;
   }
   
+      private static void readMagicItemsFromFileToArray(String fileName,
+                                                      ListItem[] items) {
+        File myFile = new File(fileName);
+        try {
+            int itemCount = 0;
+            Scanner input = new Scanner(myFile);
+
+            while (input.hasNext() && itemCount < items.length) {
+                // Read a line from the file.
+                String itemName = input.nextLine();
+
+                // Construct a new list item and set its attributes.
+                ListItem fileItem = new ListItem();
+                fileItem.setName(itemName);
+                fileItem.setCost(Math.random() * 100);
+                fileItem.setNext(null); // Still redundant. Still safe.
+
+                // Add the newly constructed item to the array.
+                items[itemCount] = fileItem;
+                itemCount = itemCount + 1;
+            }
+            // Close the file.
+            input.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found. " + ex.toString());
+        }
+    }
+
   
   private void readMagicItemsFromFileToList(String fileName,
                                             ListMan lm) {
@@ -109,6 +141,22 @@ public class ListTester {  //I understand making a separate function for this is
     }
     
   }
+  
+  private static void selectionSort(ListItem[] items) {
+        for (int pass = 0; pass < items.length-1; pass++) {
+            // System.out.println(pass + "-" + items[pass]);
+            int indexOfTarget = pass;
+            int indexOfSmallest = indexOfTarget;
+            for (int j = indexOfTarget+1; j < items.length; j++) {
+                if (items[j].getName().compareToIgnoreCase(items[indexOfSmallest].getName()) < 0) {
+                    indexOfSmallest = j;
+                }
+            }
+            ListItem temp = items[indexOfTarget];
+            items[indexOfTarget] = items[indexOfSmallest];
+            items[indexOfSmallest] = temp;
+        }
+    }
   
   //PrivatesL
   private double cost = 0;
