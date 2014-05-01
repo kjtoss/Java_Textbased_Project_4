@@ -35,7 +35,7 @@ public class ListItem {
     @Override
     public String toString() {
         return this.name
-                + " will cost (c)" + this.cost + ". PURCHASEDDDD.";
+                + " will cost (c)" + this.cost + ". ";
     }
 
     // Private

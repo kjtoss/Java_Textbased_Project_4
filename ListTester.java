@@ -37,11 +37,26 @@ public class ListTester {  //I understand making a separate function for this is
     System.out.println();
     if(direction<0){
       ListItem li = new ListItem();
-      li = sequentialSearch(lm1, targetItem);
+      li = binarySearchArray(items, targetItem);
       if (li != null) {
         System.out.println(li.toString());
+        System.out.println("Would you like to make the purchase?");
+        Scanner yesorno = new Scanner(System.in);
+        String si = new String();
+        si = yesorno.nextLine();
+        if(si.equalsIgnoreCase("yes")){
+          this.purchase = true;
+          System.out.println("Item Purchased!!");
+        }else{
+          this.purchase = false;
+          System.out.println("Item not purchased..");     
+        }
       }
     }
+  }
+  
+  public boolean purchased(){
+    return this.purchase;
   }
   
   public int getDirection(){
@@ -57,7 +72,40 @@ public class ListTester {  //I understand making a separate function for this is
   }
   
   // Private
-  
+  private static ListItem binarySearchArray(ListItem[] items,
+                                              String target) {
+        ListItem retVal = null;
+        System.out.println("Let me binarily check if we have " + target + ".");
+        ListItem currentItem = new ListItem();
+        boolean isFound = false;
+        int counter = 0;
+        int low  = 0;
+        int high = items.length-1; // because 0-based arrays
+        while ( (!isFound) && (low <= high)) {
+            int mid = Math.round((high + low) / 2);
+            currentItem = items[mid];
+            if (currentItem.getName().equalsIgnoreCase(target)) {
+                // We found it!
+                isFound = true;
+                retVal = currentItem;
+            } else {
+                // Keep looking.
+                counter++;
+                if (currentItem.getName().compareToIgnoreCase(target) > 0) {
+                    // target is higher in the list than the currentItem (at mid)
+                    high = mid - 1;
+                } else {
+                    // target is lower in the list than the currentItem (at mid)
+                    low = mid + 1;
+                }
+            }
+        }
+        if (isFound) {
+        } else {
+          System.out.println("I apologize.  We do not have that item in stock.");
+        }
+        return retVal;
+    }
   private ListItem sequentialSearch(ListMan lm,
                                     String target) {
     ListItem retVal = null;
@@ -163,6 +211,7 @@ public class ListTester {  //I understand making a separate function for this is
   private String name = null;
   private int direction = -1;
   private boolean loaded = false;
+  private boolean purchase = false;
 }
 
 

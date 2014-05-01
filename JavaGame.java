@@ -195,7 +195,7 @@ public class JavaGame{
         System.out.println("You have left the Magick Shoppe.");
         System.out.println(loc[currentLocale.getID()].toString());
         atShop=false;
-      }else{
+      }else if(magicShop.purchased()==true){
         if(currency-magicShop.getCost()>0){
           currency-=magicShop.getCost();
           items[in] = new ListInventory(in, magicShop.getName(),"Cost: (c)" + magicShop.getCost());
