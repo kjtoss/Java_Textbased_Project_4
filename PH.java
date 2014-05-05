@@ -20,7 +20,7 @@ public class PH extends Locale {
   // Other methods
   @Override
   public String toString() {
-    return super.toString() + ".  The current PH levels of the river are: " + this.ph + ".";
+    return super.toString() + ".  \nThe current PH levels of the river are: " + this.ph + ".";
   }
   
   

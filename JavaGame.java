@@ -20,7 +20,7 @@ public class JavaGame{
   public static double currency = 50;
   public static boolean atShop = false;
   public static ListTester magicShop = new ListTester();
-  public static int in = 0; //current number of items in list
+  public static int ine = 0; //current number of items in list
   public static boolean boatBuilt = false;
   public static String[] trackMoves = new String[99];
   public static int iMove = 0;
@@ -28,21 +28,21 @@ public class JavaGame{
   public static void main(String[] args) //main function
   {    
     //inventory.add();
-    items[in] = new ListInventory(in , "Weights", "\nYou found a Weights and (c)11! Do you even lift bro? Type 't' or 'take' to pick up!");
-    items[in].setNext(null);//Next is null due to being unnecessary
-    in++;
-    items[in] = new ListInventory(in, "Campus Map", "\nYou found a Campus Map and (c)11! Type 't' or 'take' to pick up!");
-    items[in].setNext(null);//Next is null due to being unnecessary
-    in++;
-    items[in] = new ListInventory(in, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!");
-    items[in].setNext(null);//Next is null due to being unnecessary
-    in++;
-    items[in] = new ListInventory(in, "Football", "\nYou found a Football and (c)11! Type 't' or 'take' to pick up!");
-    items[in].setNext(null);//Next is null due to being unnecessary
-    in++;
-    items[in] = new ListInventory(in, "Death's Scythe", "\nThe Scythe of Death!");
-    items[in].setNext(null);//Next is null due to being unnecessary
-    in++;
+    items[ine] = new ListInventory(ine , "Weights", "\nYou found a Weights and (c)11! Do you even lift bro? Type 't' or 'take' to pick up!");
+    items[ine].setNext(null);//Next is null due to being unnecessary
+    ine++;
+    items[ine] = new ListInventory(ine, "Campus Map", "\nYou found a Campus Map and (c)11! Type 't' or 'take' to pick up!");
+    items[ine].setNext(null);//Next is null due to being unnecessary
+    ine++;
+    items[ine] = new ListInventory(ine, "Pencil", "\nYou found a Pencil! Type 't' or 'take' to pick up!");
+    items[ine].setNext(null);//Next is null due to being unnecessary
+    ine++;
+    items[ine] = new ListInventory(ine, "Football", "\nYou found a Football and (c)11! Type 't' or 'take' to pick up!");
+    items[ine].setNext(null);//Next is null due to being unnecessary
+    ine++;
+    items[ine] = new ListInventory(ine, "Death's Scythe", "\nThe Scythe of Death!");
+    items[ine].setNext(null);//Next is null due to being unnecessary
+    ine++;
     
     Condition loc0 = new Condition(0,  "Champagnat", "You have arrived at the largest freshman dorm.", 0);//2,  1, 4, 10
     loc0.setCond("Good");
@@ -157,8 +157,7 @@ public class JavaGame{
           System.out.println(trackMoves[i]);
       }
       loop=false;
-    }else if(command.equalsIgnoreCase("no"))
-    {
+    }else{
       loop=false;
     }
     }
@@ -197,12 +196,12 @@ public class JavaGame{
         atShop=false;
       }else if(magicShop.purchased()==true){
         if(currency-magicShop.getCost()>0){
-          currency-=magicShop.getCost();
-          items[in] = new ListInventory(in, magicShop.getName(),"Cost: (c)" + magicShop.getCost());
-          inventory[currentItem] = items[in].getName();
-          items[in].setNext(null);//Next is null due to being unnecessary
+          currency-=magicShop.getCost();//NOT READING THE GET COST
+          items[ine] = new ListInventory(ine, magicShop.getName(),"Cost: (c)" + magicShop.getCost());
+          inventory[currentItem] = magicShop.getName();
+          items[ine].setNext(null);//Next is null due to being unnecessary
           currentItem++;
-          in++;
+          ine++;
           System.out.println("Current Balance: (c)"+currency);
         }else{
           System.out.println("Not enough money.  \nCurrent Balance: (c)"+currency);

@@ -72,7 +72,7 @@ public class ListTester {  //I understand making a separate function for this is
   }
   
   // Private
-  private static ListItem binarySearchArray(ListItem[] items,
+  private ListItem binarySearchArray(ListItem[] items,
                                               String target) {
         ListItem retVal = null;
         System.out.println("Let me binarily check if we have " + target + ".");
@@ -101,6 +101,8 @@ public class ListTester {  //I understand making a separate function for this is
             }
         }
         if (isFound) {
+      this.cost=currentItem.getCost();
+      this.name=target;
         } else {
           System.out.println("I apologize.  We do not have that item in stock.");
         }
@@ -135,7 +137,7 @@ public class ListTester {  //I understand making a separate function for this is
     return retVal;
   }
   
-      private static void readMagicItemsFromFileToArray(String fileName,
+      private void readMagicItemsFromFileToArray(String fileName,
                                                       ListItem[] items) {
         File myFile = new File(fileName);
         try {
@@ -149,7 +151,8 @@ public class ListTester {  //I understand making a separate function for this is
                 // Construct a new list item and set its attributes.
                 ListItem fileItem = new ListItem();
                 fileItem.setName(itemName);
-                fileItem.setCost(Math.random() * 100);
+                double c = Math.random() * 30;
+                fileItem.setCost(c);
                 fileItem.setNext(null); // Still redundant. Still safe.
 
                 // Add the newly constructed item to the array.
@@ -176,7 +179,8 @@ public class ListTester {  //I understand making a separate function for this is
         // Construct a new list item and set its attributes.
         ListItem fileItem = new ListItem();
         fileItem.setName(itemName);
-        fileItem.setCost(Math.random() * 30);
+        double c = Math.random() * 30;
+        fileItem.setCost(c);
         fileItem.setNext(null); // Still redundant. Still safe.
         
         // Add the newly constructed item to the list.
@@ -208,7 +212,7 @@ public class ListTester {  //I understand making a separate function for this is
   
   //PrivatesL
   private double cost = 0;
-  private String name = null;
+  private String name = "FUCK THIS SHIT NIGGA";
   private int direction = -1;
   private boolean loaded = false;
   private boolean purchase = false;
