@@ -141,7 +141,7 @@ public class JavaGame{
     
     Scanner inputReader = new Scanner(System.in);
     System.out.println("Would you like to view your tracks used to get to the end of the game?");
-    System.out.println("Type 'forward' to view from beginning, 'backward' to view from the end, or 'no' to just end the game.");    
+    System.out.println("Type 'forward' to view from beginning, 'backward' to view from the end, or something else to just end the game.");    
     command = inputReader.nextLine();
     boolean loop = true;
     while(loop){
