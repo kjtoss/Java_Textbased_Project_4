@@ -24,6 +24,8 @@ public class JavaGame{
   public static boolean boatBuilt = false;
   public static String[] trackMoves = new String[99];
   public static int iMove = 0;
+  public static Queue forward = new Queue();
+  public static Stack backward = new Stack();
   
   public static void main(String[] args) //main function
   {    
@@ -139,28 +141,32 @@ public class JavaGame{
       }
     }
     
+    boolean loop = true;
     Scanner inputReader = new Scanner(System.in);
     System.out.println("Would you like to view your tracks used to get to the end of the game?");
     System.out.println("Type 'forward' to view from beginning, 'backward' to view from the end, or something else to just end the game.");    
     command = inputReader.nextLine();
-    boolean loop = true;
-    while(loop){
-    if ( command.equalsIgnoreCase("forward") ){
-    for(int i = 0; i< trackMoves.length; i++){
-      if(trackMoves[i]!=null)
-        System.out.println(trackMoves[i]);
-    }
-    loop=false;
-    }else if(command.equalsIgnoreCase("backward")){
-      for(int i = 99; i>-1; i++){
-        if(trackMoves[i]!=null)
-          System.out.println(trackMoves[i]);
+    //for(int i = 0; i< trackMoves.length; i++){
+    while(true){
+      try{
+        if(command.equalsIgnoreCase("forward")){
+          if(forward.isEmpty())
+            break;
+          System.out.println(loc[forward.dequeue()].getName());
+        }else if(command.equalsIgnoreCase("backward")){
+          if(backward.isEmpty())
+            break;
+          System.out.println(loc[backward.pop()].getName());            
+        }else{
+          break; 
+        }
+      }catch (Exception ex) {
+        System.out.println("Caught exception: " + ex.getMessage());
       }
-      loop=false;
-    }else{
-      loop=false;
+      //if(trackMoves[i]!=null) //Part of old move tracking
+      //System.out.println(trackMoves[i]);
     }
-    }
+    
     
     System.out.println("Thank you for playing.");
     
@@ -191,7 +197,7 @@ public class JavaGame{
         moves +=1;
         score = score + 5*loc[currentLocale.getID()].getVisitPoints();
         loc[currentLocale.getID()].setVisitPoints(0);
-        System.out.println("You have left the Magick Shoppe.");
+        System.out.println("You have left the Magick Shoppe.. Remember: you were never here.");
         System.out.println(loc[currentLocale.getID()].toString());
         atShop=false;
       }else if(magicShop.purchased()==true){
@@ -332,11 +338,17 @@ public class JavaGame{
           break;
         case 3: 
           if(loc[currentLocale.getID()].getNextW()!=null)
-            newLocation = loc[loc[currentLocale.getID()].getNextW().getID()];
+          newLocation = loc[loc[currentLocale.getID()].getNextW().getID()];
           break;
       }
-      trackMoves[iMove]=loc[currentLocale.getID()].getName();
-      iMove++;
+      // trackMoves[iMove]=loc[currentLocale.getID()].getName();  //Old move tracking
+      try{
+        forward.enqueue(currentLocale.getID());
+        backward.push(currentLocale.getID());
+      }catch (Exception ex) {
+        System.out.println("Caught exception: " + ex.getMessage());
+      }
+      // iMove++;
       if (newLocation == null) {
         System.out.println("You cannot go that way.");
       } else {
